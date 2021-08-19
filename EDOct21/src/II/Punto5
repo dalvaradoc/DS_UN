@@ -1,0 +1,37 @@
+    // Complete the hasCycle function below.
+
+    /*
+     * For your reference:
+     *
+     * SinglyLinkedListNode {
+     *     int data;
+     *     SinglyLinkedListNode next;
+     * }
+     *
+     */
+    static boolean hasCycle(SinglyLinkedListNode head) {
+        int size = 1;
+        SinglyLinkedListNode[] lista = new SinglyLinkedListNode[size];
+        SinglyLinkedListNode temp = head;
+        lista[0] = temp;
+        temp = temp.next;
+        while (temp != null){
+            for (int i = 0; i < size; i++){
+                if (temp == lista[i]){
+                    return true;
+                }
+            }
+            size++;
+            SinglyLinkedListNode[] lista2 = new SinglyLinkedListNode[size];
+            for (int i = 0; i < size; i++){
+                if (i == size-1){
+                    lista2[i] = temp;
+                } else {
+                    lista2[i] = lista[i];
+                }
+            }
+            lista = lista2;
+            temp = temp.next;
+        }
+        return false;
+    }
